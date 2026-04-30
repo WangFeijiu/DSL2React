@@ -31,7 +31,13 @@
       "Bash(curl -s \"https://mastergo.com/api/files/180662635664641/nodes/26:03727\" -H \"Authorization: Bearer mg_965e5b80475e4246a1b55b8ddfbd9563\")",
       "Bash(curl -s http://localhost:3456/status)",
       "Bash(curl -X POST http://localhost:3456/save-dsl -H \"Content-Type: application/json\" -d @example-dsl.json)",
-      "Bash(curl -X POST http://localhost:3456/rebuild)"
+      "Bash(curl -X POST http://localhost:3456/rebuild)",
+      "Bash(node dist/cli.js mastergo-layer-26-03727.json)",
+      "Bash(grep -r \"from '\\\\\\\\.\\\\\\\\./types/dsl-schema'\" src/)",
+      "Bash(sed -i \"s/from '\\\\\\\\.\\\\\\\\.\\\\/types\\\\/dsl-schema'/from '..\\\\/types\\\\/dsl-schema.js'/g\" src/modules/parser/dsl-validator.ts)",
+      "Bash(sed -i \"s/from '\\\\\\\\.\\\\\\\\.\\\\/types\\\\/dsl-schema'/from '..\\\\/types\\\\/dsl-schema.js'/g\" src/modules/parser/dsl-parser.ts)",
+      "Bash(sed -i \"s/from '\\\\\\\\.\\\\\\\\.\\\\/types\\\\/dsl-schema'/from '..\\\\/types\\\\/dsl-schema.js'/g\" src/modules/rule-engine/*.ts)",
+      "Bash(sed -i \"s/from '\\\\\\\\.\\\\\\\\.\\\\/types\\\\/dsl-schema'/from '..\\\\/types\\\\/dsl-schema.js'/g\" src/modules/generator/*.ts)"
     ]
   }
 }
