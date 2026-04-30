@@ -4,10 +4,14 @@
   "description": "DSL to HTML/React converter with 85%+ fidelity",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "bin": {
+    "dsl2react": "./dist/cli.js"
+  },
   "directories": {
     "doc": "docs"
   },
   "scripts": {
+    "start": "ts-node src/cli.ts",
     "build": "tsc",
     "dev": "nodemon --watch src --exec ts-node src/index.ts",
     "test": "jest",
