@@ -9,18 +9,23 @@ import * as fs from 'fs';
 async function main() {
   const args = process.argv.slice(2);
 
-  if (args.length === 0) {
+  if (args.length === 0 || args[0] === '--help') {
     console.log('DSL2React - Convert MasterGo designs to HTML');
     console.log('');
     console.log('Usage:');
-    console.log('  dsl2react <dsl-file.json>           # Convert from local DSL file');
-    console.log('  dsl2react --mcp                     # Fetch from MasterGo via MCP');
-    console.log('  dsl2react --file <id> --layer <id>  # Fetch from MasterGo (requires API)');
+    console.log('  npm run dev                         # Fetch from MasterGo via MCP');
+    console.log('  npm run dev:rebuild                 # Rebuild from local DSL');
+    console.log('  npm start <dsl-file.json>           # Convert from local file');
+    console.log('  npm start -- --mcp                  # Fetch from MasterGo via MCP');
     console.log('');
-    console.log('Environment variables:');
+    console.log('Environment variables (.env):');
     console.log('  MG_MCP_TOKEN     - Your MasterGo MCP token');
     console.log('  MG_FILE_ID       - MasterGo file ID');
     console.log('  MG_LAYER_ID      - MasterGo layer ID');
+    console.log('');
+    console.log('Examples:');
+    console.log('  npm run dev                         # Complete pipeline from MasterGo');
+    console.log('  npm start example-dsl.json          # Convert local file');
     return;
   }
 
@@ -29,13 +34,28 @@ async function main() {
     let fileId = process.env.MG_FILE_ID || '';
     let layerId = process.env.MG_LAYER_ID || '';
 
+    // Check if rebuild mode
+    if (args[0] === '--rebuild') {
+      console.log('🔄 Rebuild mode: using local DSL...');
+      const localPath = 'output/raw-mcp-dsl.json';
+      if (!fs.existsSync(localPath)) {
+        console.error('❌ No local DSL found. Run "npm run dev" first.');
+        process.exit(1);
+      }
+      const content = fs.readFileSync(localPath, 'utf-8');
+      dslData = JSON.parse(content);
+      console.log('✅ Loaded local DSL');
+    }
     // Check if using MCP
-    if (args[0] === '--mcp') {
+    else if (args[0] === '--mcp') {
       console.log('📡 Fetching DSL from MasterGo via MCP...');
       dslData = await fetchDSLFromEnv();
       console.log('✅ DSL fetched from MasterGo');
 
-      // Save raw DSL for debugging
+      // Save raw DSL for debugging and rebuild
+      if (!fs.existsSync('output')) {
+        fs.mkdirSync('output', { recursive: true });
+      }
       fs.writeFileSync('output/raw-mcp-dsl.json', JSON.stringify(dslData, null, 2), 'utf-8');
       console.log('📄 Raw DSL saved to output/raw-mcp-dsl.json');
     }
@@ -56,10 +76,8 @@ async function main() {
       console.log(`   File ID: ${fileId}`);
       console.log(`   Layer ID: ${layerId}`);
       console.log('');
-      console.log('⚠️  Note: Direct API access not yet implemented.');
-      console.log('   Please use --mcp flag or export DSL as JSON from MasterGo:');
-      console.log(`   npm start --mcp`);
-      console.log(`   npm start dsl-export.json`);
+      console.log('⚠️  Note: Use --mcp flag instead:');
+      console.log(`   npm run dev`);
       return;
     } else {
       console.error('❌ Invalid arguments. Use --help for usage.');

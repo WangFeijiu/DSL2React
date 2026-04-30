@@ -11,10 +11,11 @@
     "doc": "docs"
   },
   "scripts": {
+    "dev": "ts-node src/cli.ts --mcp",
+    "dev:rebuild": "ts-node src/cli.ts --rebuild",
     "start": "ts-node src/cli.ts",
     "server": "ts-node src/server.ts",
     "build": "tsc",
-    "dev": "nodemon --watch src --exec ts-node src/index.ts",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
