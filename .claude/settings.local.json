@@ -18,7 +18,10 @@
       "Bash(git commit -m 'feat: implement CSS styles, animations, assets, and output manager \\(STORY-011,012,013,015,016\\) *)",
       "Bash(git commit -m 'fix: add output manager module *)",
       "Bash(git commit -m 'feat: add CLI interface and complete Sprint 1 *)",
-      "Bash(git commit *)"
+      "Bash(git commit *)",
+      "Bash(npm start *)",
+      "Bash(env)",
+      "Bash(curl -I https://mastergo.com)"
     ]
   }
 }

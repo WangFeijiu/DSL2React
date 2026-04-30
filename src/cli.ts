@@ -1,41 +1,68 @@
 #!/usr/bin/env node
-import { DSLFetcher } from './modules/fetcher/dsl-fetcher';
 import { DSLValidator } from './modules/parser/dsl-validator';
 import { DSLParser } from './modules/parser/dsl-parser';
 import { HTMLGenerator } from './modules/generator/html-generator';
 import { OutputManager } from './modules/output/output-manager';
+import * as fs from 'fs';
 
 async function main() {
   const args = process.argv.slice(2);
 
   if (args.length === 0) {
     console.log('DSL2React - Convert MasterGo designs to HTML');
-    console.log('Usage: dsl2react <mastergo-url> or dsl2react --file <fileId> --layer <layerId>');
+    console.log('');
+    console.log('Usage:');
+    console.log('  dsl2react <dsl-file.json>           # Convert from local DSL file');
+    console.log('  dsl2react --file <id> --layer <id>  # Fetch from MasterGo (requires API)');
+    console.log('');
+    console.log('Environment variables:');
+    console.log('  MASTERGO_API_KEY - Your MasterGo API token');
+    console.log('  MG_FILE_ID       - MasterGo file ID');
+    console.log('  MG_LAYER_ID      - MasterGo layer ID');
     return;
   }
 
   try {
-    // 1. Fetch DSL
-    console.log('📥 Fetching DSL data...');
-    const fetcher = new DSLFetcher();
-    const input = args[0].startsWith('http')
-      ? { type: 'url' as const, url: args[0] }
-      : { type: 'ids' as const, fileId: args[1], layerId: args[3] };
+    let dslData: any;
+    let fileId = process.env.MG_FILE_ID || '';
+    let layerId = process.env.MG_LAYER_ID || '';
 
-    const dslData = await fetcher.fetchDSL(input);
-    console.log('✅ DSL data fetched');
+    // Check if first arg is a JSON file
+    if (args[0].endsWith('.json')) {
+      console.log('📥 Loading DSL from file...');
+      const content = fs.readFileSync(args[0], 'utf-8');
+      dslData = JSON.parse(content);
+      layerId = dslData.id || 'local';
+      console.log('✅ DSL loaded from file');
+    } else if (args[0] === '--file') {
+      // Use MasterGo MCP or API
+      fileId = args[1];
+      layerId = args[3];
+
+      console.log('📥 Fetching DSL data from MasterGo...');
+      console.log(`   File ID: ${fileId}`);
+      console.log(`   Layer ID: ${layerId}`);
+      console.log('');
+      console.log('⚠️  Note: Direct API access not yet implemented.');
+      console.log('   Please export DSL as JSON from MasterGo and use:');
+      console.log(`   npm start dsl-export.json`);
+      return;
+    } else {
+      console.error('❌ Invalid arguments. Use --help for usage.');
+      return;
+    }
 
     // 2. Validate
     console.log('🔍 Validating DSL...');
     const validator = new DSLValidator();
-    validator.validate(dslData.raw);
+    const validatedData = validator.validate(dslData);
     console.log('✅ DSL validated');
 
     // 3. Parse
     console.log('🔄 Parsing DSL tree...');
     const parser = new DSLParser();
-    const tree = parser.parse(dslData.raw, dslData.metadata.fileId, dslData.metadata.layerId);
-    console.log('✅ DSL parsed');
+    const tree = parser.parse(validatedData, fileId, layerId);
+    console.log(`✅ Parsed ${tree.root.children?.length || 0} top-level elements`);
 
     // 4. Generate HTML
     console.log('🎨 Generating HTML...');
@@ -46,13 +73,8 @@ async function main() {
     // 5. Write output
     console.log('💾 Writing output files...');
     const outputManager = new OutputManager();
-    outputManager.cleanOldOutput(dslData.metadata.layerId);
-    const paths = outputManager.writeOutput(
-      dslData.metadata.layerId,
-      code.html,
-      code.css,
-      code.js
-    );
+    outputManager.cleanOldOutput(layerId);
+    const paths = outputManager.writeOutput(layerId, code.html, code.css, code.js);
     console.log('✅ Output written');
 
     console.log('\n📄 Generated files:');
@@ -61,8 +83,13 @@ async function main() {
     if (paths.js) console.log(`  JS: ${paths.js}`);
 
     console.log('\n🎉 Conversion complete!');
+    console.log(`\n💡 Open ${paths.html} in your browser to view the result.`);
   } catch (error: any) {
     console.error('❌ Error:', error.message);
+    if (error.stack) {
+      console.error('\nStack trace:');
+      console.error(error.stack);
+    }
     process.exit(1);
   }
 }

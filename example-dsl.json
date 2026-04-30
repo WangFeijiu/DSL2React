@@ -1,0 +1,106 @@
+{
+  "id": "26:03727",
+  "name": "Hero Section",
+  "type": "FRAME",
+  "x": 0,
+  "y": 0,
+  "width": 1920,
+  "height": 1080,
+  "visible": true,
+  "fills": [
+    {
+      "type": "SOLID",
+      "color": { "r": 0.95, "g": 0.95, "b": 0.98, "a": 1 }
+    }
+  ],
+  "children": [
+    {
+      "id": "title",
+      "name": "Main Title",
+      "type": "TEXT",
+      "x": 100,
+      "y": 400,
+      "width": 800,
+      "height": 100,
+      "characters": "Welcome to DSL2React",
+      "style": {
+        "fontFamily": "Arial",
+        "fontSize": 48,
+        "fontWeight": 700,
+        "lineHeightPx": 60,
+        "fills": [
+          {
+            "color": { "r": 0.1, "g": 0.1, "b": 0.2, "a": 1 }
+          }
+        ]
+      }
+    },
+    {
+      "id": "subtitle",
+      "name": "Subtitle",
+      "type": "TEXT",
+      "x": 100,
+      "y": 520,
+      "width": 600,
+      "height": 40,
+      "characters": "Convert MasterGo designs to HTML with 85%+ fidelity",
+      "style": {
+        "fontFamily": "Arial",
+        "fontSize": 18,
+        "fontWeight": 400,
+        "lineHeightPx": 28,
+        "fills": [
+          {
+            "color": { "r": 0.4, "g": 0.4, "b": 0.5, "a": 1 }
+          }
+        ]
+      }
+    },
+    {
+      "id": "cta-button",
+      "name": "CTA Button",
+      "type": "FRAME",
+      "x": 100,
+      "y": 600,
+      "width": 200,
+      "height": 60,
+      "fills": [
+        {
+          "type": "SOLID",
+          "color": { "r": 0.2, "g": 0.5, "b": 1, "a": 1 }
+        }
+      ],
+      "effects": [
+        {
+          "type": "DROP_SHADOW",
+          "offset": { "x": 0, "y": 4 },
+          "radius": 12,
+          "color": { "r": 0.2, "g": 0.5, "b": 1, "a": 0.3 }
+        }
+      ],
+      "children": [
+        {
+          "id": "button-text",
+          "name": "Button Text",
+          "type": "TEXT",
+          "x": 50,
+          "y": 18,
+          "width": 100,
+          "height": 24,
+          "characters": "Get Started",
+          "style": {
+            "fontFamily": "Arial",
+            "fontSize": 16,
+            "fontWeight": 600,
+            "lineHeightPx": 24,
+            "fills": [
+              {
+                "color": { "r": 1, "g": 1, "b": 1, "a": 1 }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
