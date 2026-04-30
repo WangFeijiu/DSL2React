@@ -1,0 +1,31 @@
+project_name: "DSL2React"
+project_type: "library"
+project_level: 2
+output_folder: "docs"
+
+bmm:
+  workflow_status_file: "docs/bmm-workflow-status.yaml"
+  sprint_status_file: "docs/sprint-status.yaml"
+
+paths:
+  docs: "docs"
+  stories: "docs/stories"
+  tests: "tests"
+  bmad: "bmad"
+  agent_overrides: "bmad/agent-overrides"
+
+agents:
+  business_analyst:
+    model: "sonnet"
+  product_manager:
+    model: "sonnet"
+  system_architect:
+    model: "sonnet"
+  ux_designer:
+    model: "sonnet"
+  scrum_master:
+    model: "sonnet"
+  developer:
+    model: "sonnet"
+  creative_intelligence:
+    model: "sonnet"
