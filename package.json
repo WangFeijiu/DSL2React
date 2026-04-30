@@ -2,6 +2,7 @@
   "name": "dsl2react",
   "version": "1.0.0",
   "description": "DSL to HTML/React converter with 85%+ fidelity",
+  "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "bin": {
@@ -12,6 +13,7 @@
   },
   "scripts": {
     "start": "ts-node src/cli.ts",
+    "server": "ts-node src/server.ts",
     "build": "tsc",
     "dev": "nodemon --watch src --exec ts-node src/index.ts",
     "test": "jest",

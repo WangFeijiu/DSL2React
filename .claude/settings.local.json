@@ -21,7 +21,17 @@
       "Bash(git commit *)",
       "Bash(npm start *)",
       "Bash(env)",
-      "Bash(curl -I https://mastergo.com)"
+      "Bash(curl -I https://mastergo.com)",
+      "Bash(export MG_FILE_ID=180662635664641)",
+      "Bash(export MG_LAYER_ID=\"26:03727\")",
+      "Bash(export MG_MCP_TOKEN=mg_965e5b80475e4246a1b55b8ddfbd9563)",
+      "Bash(curl -X GET \"https://api.mastergo.com/files/180662635664641\" -H \"X-MG-Token: mg_965e5b80475e4246a1b55b8ddfbd9563\")",
+      "Bash(curl -X GET \"https://mastergo.com/api/file/180662635664641/layer/26:03727\" -H \"Authorization: mg_965e5b80475e4246a1b55b8ddfbd9563\")",
+      "Bash(node fetch-mastergo.js)",
+      "Bash(curl -s \"https://mastergo.com/api/files/180662635664641/nodes/26:03727\" -H \"Authorization: Bearer mg_965e5b80475e4246a1b55b8ddfbd9563\")",
+      "Bash(curl -s http://localhost:3456/status)",
+      "Bash(curl -X POST http://localhost:3456/save-dsl -H \"Content-Type: application/json\" -d @example-dsl.json)",
+      "Bash(curl -X POST http://localhost:3456/rebuild)"
     ]
   }
 }
