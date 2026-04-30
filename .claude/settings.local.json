@@ -12,7 +12,8 @@
       "Bash(git commit -m 'feat: implement MasterGo API client \\(STORY-001\\) *)",
       "Bash(git commit -m 'feat: implement DSL schema validation \\(STORY-002\\) *)",
       "Bash(git commit -m 'feat: implement DSL tree parser \\(STORY-003\\) *)",
-      "Bash(git commit -m 'feat: implement HTML generator \\(STORY-004\\) *)"
+      "Bash(git commit -m 'feat: implement HTML generator \\(STORY-004\\) *)",
+      "Bash(git commit -m 'feat: implement Flexbox rule engine \\(STORY-005\\) *)"
     ]
   }
 }
