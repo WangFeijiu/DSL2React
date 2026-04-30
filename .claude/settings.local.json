@@ -14,7 +14,8 @@
       "Bash(git commit -m 'feat: implement DSL tree parser \\(STORY-003\\) *)",
       "Bash(git commit -m 'feat: implement HTML generator \\(STORY-004\\) *)",
       "Bash(git commit -m 'feat: implement Flexbox rule engine \\(STORY-005\\) *)",
-      "Bash(git commit -m 'feat: implement Grid, Responsive, Positioning rules and ClassNameGenerator \\(STORY-006,007,008,010\\) *)"
+      "Bash(git commit -m 'feat: implement Grid, Responsive, Positioning rules and ClassNameGenerator \\(STORY-006,007,008,010\\) *)",
+      "Bash(git commit -m 'feat: implement CSS styles, animations, assets, and output manager \\(STORY-011,012,013,015,016\\) *)"
     ]
   }
 }
