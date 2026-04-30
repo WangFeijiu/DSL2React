@@ -15,6 +15,14 @@ output/
 *.css
 !example-dsl.json
 
+# Screenshots (large files)
+screenshots/*.png
+screenshots/*.jpg
+screenshots/*.jpeg
+screenshots/*.gif
+!screenshots/README.md
+!screenshots/.gitkeep
+
 # Environment variables
 .env
 .env.local
