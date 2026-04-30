@@ -4,6 +4,7 @@ import { DSLParser } from './modules/parser/dsl-parser';
 import { HTMLGenerator } from './modules/generator/html-generator';
 import { OutputManager } from './modules/output/output-manager';
 import { fetchDSLFromEnv } from './modules/fetcher/mastergo-mcp-client';
+import { adaptMasterGoDSL } from './modules/parser/mastergo-dsl-adapter';
 import * as fs from 'fs';
 
 async function main() {
@@ -49,15 +50,24 @@ async function main() {
     // Check if using MCP
     else if (args[0] === '--mcp') {
       console.log('📡 Fetching DSL from MasterGo via MCP...');
-      dslData = await fetchDSLFromEnv();
+      const masterGoDSL = await fetchDSLFromEnv();
       console.log('✅ DSL fetched from MasterGo');
 
       // Save raw DSL for debugging and rebuild
       if (!fs.existsSync('output')) {
         fs.mkdirSync('output', { recursive: true });
       }
-      fs.writeFileSync('output/raw-mcp-dsl.json', JSON.stringify(dslData, null, 2), 'utf-8');
+      fs.writeFileSync('output/raw-mcp-dsl.json', JSON.stringify(masterGoDSL, null, 2), 'utf-8');
       console.log('📄 Raw DSL saved to output/raw-mcp-dsl.json');
+
+      // Adapt MasterGo DSL to standard format
+      console.log('🔄 Adapting MasterGo DSL format...');
+      dslData = adaptMasterGoDSL(masterGoDSL);
+      console.log('✅ DSL format adapted');
+
+      // Save adapted DSL
+      fs.writeFileSync('output/adapted-dsl.json', JSON.stringify(dslData, null, 2), 'utf-8');
+      console.log('📄 Adapted DSL saved to output/adapted-dsl.json');
     }
     // Check if first arg is a JSON file
     else if (args[0].endsWith('.json')) {
