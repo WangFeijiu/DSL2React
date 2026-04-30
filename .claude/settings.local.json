@@ -44,7 +44,8 @@
       "Bash(curl -s -X POST http://localhost:3456/rebuild)",
       "Bash(git remote *)",
       "Bash(git branch *)",
-      "Bash(git push *)"
+      "Bash(git push *)",
+      "Bash(echo \"  - Remote: $\\(git remote get-url origin\\)\")"
     ]
   }
 }
