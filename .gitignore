@@ -1,6 +1,7 @@
 # Dependencies
 node_modules/
 package-lock.json
+pnpm-lock.yaml
 yarn.lock
 
 # Build output
@@ -8,12 +9,16 @@ dist/
 build/
 *.tsbuildinfo
 
+# Output files
+output/
+*.html
+*.css
+!example-dsl.json
+
 # Environment variables
 .env
 .env.local
-
-# Output files
-output/
+.env.*.local
 
 # IDE
 .vscode/
@@ -30,11 +35,17 @@ Thumbs.db
 logs/
 *.log
 npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
 # Testing
 coverage/
 .nyc_output/
 
 # Temporary files
+tmp/
+temp/
 *.tmp
-.cache/
+
+# Claude
+.claude/
