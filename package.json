@@ -1,18 +1,26 @@
 {
   "name": "dsl2react",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "DSL to HTML/React converter with 85%+ fidelity",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "directories": {
     "doc": "docs"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "dev": "nodemon --watch src --exec ts-node src/index.ts",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "lint": "eslint src/**/*.ts",
+    "lint:fix": "eslint src/**/*.ts --fix",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "clean": "rm -rf dist output/*"
   },
-  "keywords": [],
+  "keywords": ["dsl", "html", "react", "converter", "mastergo"],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
   "devDependencies": {
     "@types/jest": "^30.0.0",
     "@types/node": "^25.6.0",
