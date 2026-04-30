@@ -1,6 +1,17 @@
 # DSL2React
 
+[![GitHub](https://img.shields.io/badge/GitHub-DSL2React-blue?logo=github)](https://github.com/WangFeijiu/DSL2React)
+[![License](https://img.shields.io/badge/license-ISC-green.svg)](LICENSE)
+[![Node](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg)](https://nodejs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-6.0-blue.svg)](https://www.typescriptlang.org/)
+
 Convert MasterGo designs to HTML/CSS with 85%+ fidelity using MCP protocol.
+
+## 🔗 Links
+
+- **GitHub**: https://github.com/WangFeijiu/DSL2React
+- **Documentation**: See `docs/` directory
+- **Issues**: https://github.com/WangFeijiu/DSL2React/issues
 
 ## 🎯 核心理念
 
