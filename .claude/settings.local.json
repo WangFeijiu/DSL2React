@@ -10,7 +10,8 @@
       "Bash(npm run *)",
       "Bash(git commit -m 'fix: update ESLint and TypeScript config for latest versions *)",
       "Bash(git commit -m 'feat: implement MasterGo API client \\(STORY-001\\) *)",
-      "Bash(git commit -m 'feat: implement DSL schema validation \\(STORY-002\\) *)"
+      "Bash(git commit -m 'feat: implement DSL schema validation \\(STORY-002\\) *)",
+      "Bash(git commit -m 'feat: implement DSL tree parser \\(STORY-003\\) *)"
     ]
   }
 }
