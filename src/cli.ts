@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { fetchDSLFromEnv } from './modules/fetcher/mastergo-mcp-client';
 import { convertToHTML } from './modules/converter/simple-converter';
-import { convertToPremiumHTML } from './modules/premium/premium-converter';
+import { convertToPremiumHTML } from './modules/premium/premium-converter-full';
 import * as fs from 'fs';
 
 async function main() {

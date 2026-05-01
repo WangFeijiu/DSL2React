@@ -45,7 +45,8 @@
       "Bash(git remote *)",
       "Bash(git branch *)",
       "Bash(git push *)",
-      "Bash(echo \"  - Remote: $\\(git remote get-url origin\\)\")"
+      "Bash(echo \"  - Remote: $\\(git remote get-url origin\\)\")",
+      "Bash(node -e ' *)"
     ]
   }
 }
