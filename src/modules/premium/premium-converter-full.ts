@@ -1,23 +1,21 @@
 /**
- * Premium Converter - Full Version with Two-Phase Conversion
- * Phase 1: Extract all data from DSL tree (region-based)
+ * Premium Converter - Full Version with Universal Semantic Engine
+ * Phase 1: Extract features and infer semantics (NO hardcoding)
  * Phase 2: Render semantic HTML
  */
 
-import { DataExtractorV3 } from './data-extractor-v3';
+import { UniversalDataExtractor } from './universal-data-extractor';
 import { PremiumRenderer } from './premium-renderer';
 
 export function convertToPremiumHTML(dslInput: any): string {
-  const { styles, nodes } = dslInput.dsl;
-  const rootNode = nodes[0];
-
-  // Phase 1: Extract data with region-based strategy
-  const extractor = new DataExtractorV3(styles);
-  const data = extractor.extract(rootNode);
+  // Phase 1: Universal semantic extraction
+  const extractor = new UniversalDataExtractor(dslInput);
+  const data = extractor.extract();
 
   // Phase 2: Render HTML
-  const renderer = new PremiumRenderer();
-  const html = renderer.render(data);
+  const renderer = new PremiumRenderer(dslInput.dsl.styles);
+  const html = renderer.render(data, extractor);
 
   return html;
 }
+
